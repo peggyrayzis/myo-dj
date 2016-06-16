@@ -1,0 +1,23 @@
+{
+  "name": "myo-dj",
+  "version": "1.0.0",
+  "description": "Controlling Traktor DJ software with Myo armband",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peggyrayzis/myo-dj.git"
+  },
+  "author": "Peggy Rayzis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peggyrayzis/myo-dj/issues"
+  },
+  "homepage": "https://github.com/peggyrayzis/myo-dj#readme",
+  "dependencies": {
+    "myo": "^2.1.1",
+    "robotjs": "^0.4.4"
+  }
+}

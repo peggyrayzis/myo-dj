@@ -1,3 +1,4 @@
+// dependencies
 const Myo = require('myo');
 const robot = require('robotjs');
 
@@ -5,6 +6,13 @@ const robot = require('robotjs');
 const flex = require('./flex.myo');
 const snap = require('./snap.myo');
 const hard_tap = require('./hardtap.myo');
+const vector = require('./vector.myo');
+
+// state vars
+var fistOn;
+var fingersSpreadOn;
+var lastRun;
+var currentRun;
 
 // connect to Myo Connect control center
 Myo.connect('com.myodj.app');
@@ -16,39 +24,105 @@ Myo.on('connected', function(data, timestamp) {
 });
 
 Myo.onError = function () {  
-    console.log('Could not connect.');
+	console.log('Could not connect.');
 };
-
-// traktor key bindings
-Myo.on('fist', function(){
-	robot.keyTap("w");  
-	console.log('Fist!');
-	this.vibrate();
-});
 
 // this fn should never be called. if it is, something is wrong!
 Myo.on('unlock', function(){
 	console.log('I HAVE BEEN LOCKED')
 });
 
-Myo.on('wave_out', function(){
-	robot.keyTap("s");  
-	console.log('Wave out');
-	this.vibrate();
+// traktor key bindings
+Myo.on('wave_in', function(){
+	robot.keyTap("w");  
+	console.log('Play Deck A');
+	this.vibrate('short');
 });
 
+Myo.on('wave_out', function(){
+	robot.keyTap("s");  
+	console.log('Play Deck B');
+	this.vibrate('short');
+});
+
+Myo.on('fist', function(){
+	this.zeroOrientation()
+	this.vibrate('short');
+	fistOn = true;
+	lastRun = new Date()
+	console.log('Filter on Deck B.');
+});
+
+Myo.on('fist_off', function(){ 
+	stepsDeckB = 0;
+	robot.keyTap("b");
+	fistOn = false;
+	console.log('Filter off Deck B.');
+});
+
+Myo.on('fingers_spread', function(){
+	this.zeroOrientation()
+	this.vibrate('short');
+	fingersSpreadOn = true;
+	lastRun = new Date()
+	console.log('Filter on Deck A.');
+});
+
+Myo.on('fingers_spread_off', function(){ 
+	stepsDeckA = 0;
+	robot.keyTap("v");
+	fingersSpreadOn = false;
+	console.log('Filter off Deck B.');
+});
+
+var stepsDeckB = 0;
+var stepsDeckA = 0;
+Myo.on('vector', function(vector){
+	currentRun = new Date()
+	if(currentRun - lastRun > 100){
+		if(fistOn){
+			var stepLevelB = Math.floor(vector.theta * 100 / 12.5)
+			var stepsToTakeB = stepLevelB - stepsDeckB;
+			if(stepsToTakeB > 0) {
+				for(var i=0; i < stepsToTakeB; i++) {
+					robot.keyTap("n");
+				}
+				stepsDeckB = stepLevelB;
+			} else {
+				for(var i=0; i < Math.abs(stepsToTakeB); i++) {
+					robot.keyTap("m");
+				}
+				stepsDeckB = stepLevelB;
+			}
+		}
+		if(fingersSpreadOn){
+			var stepLevelA = Math.floor(vector.theta * 100 / 12.5)
+			var stepsToTakeA = stepLevelA - stepsDeckA;
+			if(stepsToTakeA > 0) {
+				for(var j=0; j < stepsToTakeA; j++) {
+					robot.keyTap("x");
+				}
+				stepsDeckA = stepLevelA;
+			} else {
+				for(var j=0; j < Math.abs(stepsToTakeA); j++) {
+					robot.keyTap("c");
+				}
+				stepsDeckA = stepLevelA;
+			}
+		}
+	}
+})
 
 Myo.on('snap', function(){
 	console.log('snap');
 	robot.keyTap("j"); 
-	this.vibrate();
+	this.vibrate('short');
 });
 
-// Myo.on('hard_tap', function(){
-// 	console.log('tap tap');
-// 	this.vibrate();
-// });
+Myo.on('hard_tap', function(){
+	console.log('tap tap');
+});
 
 Myo.on('pose', function(pose_name){
-    console.log(`Started ${pose_name}`);
+	console.log(`Started ${pose_name}`);
 });

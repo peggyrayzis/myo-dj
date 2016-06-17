@@ -72,7 +72,7 @@ Myo.on('fingers_spread_off', function(){
 	stepsDeckA = 0;
 	robot.keyTap("v");
 	fingersSpreadOn = false;
-	console.log('Filter off Deck B.');
+	console.log('Filter off Deck A.');
 });
 
 var stepsDeckB = 0;
@@ -114,15 +114,16 @@ Myo.on('vector', function(vector){
 })
 
 Myo.on('snap', function(){
-	console.log('snap');
+	console.log('Sync');
 	robot.keyTap("j"); 
 	this.vibrate('short');
 });
 
 Myo.on('hard_tap', function(){
-	console.log('tap tap');
+	robot.keyTap("z");
+	console.log('Effect button 3'); 
 });
 
-Myo.on('pose', function(pose_name){
-	console.log(`Started ${pose_name}`);
-});
+// Myo.on('pose', function(pose_name){
+// 	console.log(`Started ${pose_name}`);
+// });

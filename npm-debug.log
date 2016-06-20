@@ -1,92 +1,40 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/bin/node',
-1 verbose cli   '/usr/local/bin/npm',
-1 verbose cli   'i',
-1 verbose cli   '-S',
-1 verbose cli   'myojs-snap' ]
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'start' ]
 2 info using npm@2.14.20
 3 info using node@v4.4.1
-4 verbose install initial load of /Users/peggyrayzis/myo-dj/package.json
-5 warn package.json myo-dj@1.0.0 No README data
-6 verbose installManyTop reading scoped package data from /Users/peggyrayzis/myo-dj/node_modules/myo/package.json
-7 verbose installManyTop reading scoped package data from /Users/peggyrayzis/myo-dj/node_modules/robotjs/package.json
-8 info package.json myo@2.1.1 license should be a valid SPDX license expression
-9 verbose readDependencies loading dependencies from /Users/peggyrayzis/myo-dj/package.json
-10 silly cache add args [ 'myojs-snap', null ]
-11 verbose cache add spec myojs-snap
-12 silly cache add parsed spec Result {
-12 silly cache add   raw: 'myojs-snap',
-12 silly cache add   scope: null,
-12 silly cache add   name: 'myojs-snap',
-12 silly cache add   rawSpec: '',
-12 silly cache add   spec: 'latest',
-12 silly cache add   type: 'tag' }
-13 silly addNamed myojs-snap@latest
-14 verbose addNamed "latest" is being treated as a dist-tag for myojs-snap
-15 info addNameTag [ 'myojs-snap', 'latest' ]
-16 silly mapToRegistry name myojs-snap
-17 silly mapToRegistry using default registry
-18 silly mapToRegistry registry https://registry.npmjs.org/
-19 silly mapToRegistry uri https://registry.npmjs.org/myojs-snap
-20 verbose addNameTag registry:https://registry.npmjs.org/myojs-snap not in flight; fetching
-21 verbose request uri https://registry.npmjs.org/myojs-snap
-22 verbose request no auth needed
-23 info attempt registry request try #1 at 4:26:12 PM
-24 verbose request id 33d7b6d88bd381bc
-25 http request GET https://registry.npmjs.org/myojs-snap
-26 http 404 https://registry.npmjs.org/myojs-snap
-27 verbose headers { 'content-type': 'application/json',
-27 verbose headers   'cache-control': 'max-age=0',
-27 verbose headers   'content-length': '2',
-27 verbose headers   'accept-ranges': 'bytes',
-27 verbose headers   date: 'Thu, 16 Jun 2016 20:26:12 GMT',
-27 verbose headers   via: '1.1 varnish',
-27 verbose headers   age: '0',
-27 verbose headers   connection: 'keep-alive',
-27 verbose headers   'x-served-by': 'cache-iad2121-IAD',
-27 verbose headers   'x-cache': 'MISS',
-27 verbose headers   'x-cache-hits': '0',
-27 verbose headers   'x-timer': 'S1466108772.752282,VS0,VE24',
-27 verbose headers   vary: 'Accept-Encoding' }
-28 silly get cb [ 404,
-28 silly get   { 'content-type': 'application/json',
-28 silly get     'cache-control': 'max-age=0',
-28 silly get     'content-length': '2',
-28 silly get     'accept-ranges': 'bytes',
-28 silly get     date: 'Thu, 16 Jun 2016 20:26:12 GMT',
-28 silly get     via: '1.1 varnish',
-28 silly get     age: '0',
-28 silly get     connection: 'keep-alive',
-28 silly get     'x-served-by': 'cache-iad2121-IAD',
-28 silly get     'x-cache': 'MISS',
-28 silly get     'x-cache-hits': '0',
-28 silly get     'x-timer': 'S1466108772.752282,VS0,VE24',
-28 silly get     vary: 'Accept-Encoding' } ]
-29 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/myojs-snap
-29 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
-29 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:242:14)
-29 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
-29 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:199:22)
-29 verbose stack     at emitTwo (events.js:87:13)
-29 verbose stack     at Request.emit (events.js:172:7)
-29 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1036:10)
-29 verbose stack     at emitOne (events.js:82:20)
-29 verbose stack     at Request.emit (events.js:169:7)
-29 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:963:12)
-30 verbose statusCode 404
-31 verbose pkgid myojs-snap
-32 verbose cwd /Users/peggyrayzis/myo-dj
-33 error Darwin 15.3.0
-34 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "i" "-S" "myojs-snap"
-35 error node v4.4.1
-36 error npm  v2.14.20
-37 error code E404
-38 error 404 Registry returned 404 for GET on https://registry.npmjs.org/myojs-snap
-38 error 404
-38 error 404 'myojs-snap' is not in the npm registry.
-38 error 404 You should bug the author to publish it (or use the name yourself!)
-38 error 404 It was specified as a dependency of 'myo-dj'
-38 error 404
-38 error 404 Note that you can also install from a
-38 error 404 tarball, folder, http url, or git url.
-39 verbose exit [ 1, true ]
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart myo-dj@1.0.0
+6 info start myo-dj@1.0.0
+7 verbose unsafe-perm in lifecycle true
+8 info myo-dj@1.0.0 Failed to exec start script
+9 verbose stack Error: myo-dj@1.0.0 start: `node index.js`
+9 verbose stack Exit status 1
+9 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:214:16)
+9 verbose stack     at emitTwo (events.js:87:13)
+9 verbose stack     at EventEmitter.emit (events.js:172:7)
+9 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+9 verbose stack     at emitTwo (events.js:87:13)
+9 verbose stack     at ChildProcess.emit (events.js:172:7)
+9 verbose stack     at maybeClose (internal/child_process.js:827:16)
+9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+10 verbose pkgid myo-dj@1.0.0
+11 verbose cwd /Users/peggyrayzis/myo-dj
+12 error Darwin 15.3.0
+13 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "start"
+14 error node v4.4.1
+15 error npm  v2.14.20
+16 error code ELIFECYCLE
+17 error myo-dj@1.0.0 start: `node index.js`
+17 error Exit status 1
+18 error Failed at the myo-dj@1.0.0 start script 'node index.js'.
+18 error This is most likely a problem with the myo-dj package,
+18 error not with npm itself.
+18 error Tell the author that this fails on your system:
+18 error     node index.js
+18 error You can get information on how to open an issue for this project with:
+18 error     npm bugs myo-dj
+18 error Or if that isn't available, you can get their info via:
+18 error
+18 error     npm owner ls myo-dj
+18 error There is likely additional logging output above.
+19 verbose exit [ 1, true ]

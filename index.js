@@ -7,10 +7,13 @@ const flex = require('./flex.myo');
 const snap = require('./snap.myo');
 const hard_tap = require('./hardtap.myo');
 const vector = require('./vector.myo');
+const arm_busy = require('./busyarm.myo')
 
 // state vars
 var fistOn;
 var fingersSpreadOn;
+var wavingLeft;
+var wavingRight;
 var lastRun;
 var currentRun;
 
@@ -34,16 +37,27 @@ Myo.on('unlock', function(){
 
 // traktor key bindings
 Myo.on('wave_in', function(){
+	wavingRight = true;
 	robot.keyTap("w");  
 	console.log('Play Deck A');
 	this.vibrate('short');
 });
 
+Myo.on('wave_in_off', function(){
+	wavingRight = false;
+})
+
 Myo.on('wave_out', function(){
+	wavingLeft = true;
 	robot.keyTap("s");  
 	console.log('Play Deck B');
 	this.vibrate('short');
 });
+
+Myo.on('wave_out_off', function(){
+	wavingLeft = false;
+})
+
 
 Myo.on('fist', function(){
 	this.zeroOrientation()
@@ -114,16 +128,16 @@ Myo.on('vector', function(vector){
 })
 
 Myo.on('snap', function(){
-	console.log('Sync');
-	robot.keyTap("j"); 
-	this.vibrate('short');
+	if(!fistOn && !fingersSpreadOn && !wavingLeft && !wavingRight){
+		robot.keyTap("t"); 
+		console.log('Effect button 2');
+		this.vibrate('short');
+	}
 });
 
 Myo.on('hard_tap', function(){
-	robot.keyTap("z");
-	console.log('Effect button 3'); 
+	if(!fistOn && !fingersSpreadOn && !wavingLeft && !wavingRight){
+		robot.keyTap("z");
+		console.log('Effect button 3'); 
+	}
 });
-
-// Myo.on('pose', function(pose_name){
-// 	console.log(`Started ${pose_name}`);
-// });

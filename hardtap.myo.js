@@ -2,7 +2,7 @@
 	Myo.plugins = Myo.plugins || {};
 
 	Myo.plugins.hardtap = {
-		threshold   : 0.9,       //How much force is required to register a tap
+		threshold   : 0.7,       //How much force is required to register a tap
 		time_window : [80, 300]  //The window in milliseconds for a hard tap to register
 	};
 
